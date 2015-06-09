@@ -1,0 +1,24 @@
+<ui:composition template="/WEB-INF/templates/TemplatePadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Preços</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="formPrecos">
+			<h:panelGrid columns="1" cellpadding="5">
+				<div class="form-group">
+					<p:outputLabel for="idLivro" value="Id: " />
+					<p:inputText id="idLivro" />
+				</div>
+
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,199 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+
+body {
+    padding-top: 70px;
+    background:#FFFAFA;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+ .navbar-default {
+    background-color:#5F9EA0;
+    border-color: #AFEEEE;
+}
+.navbar-default .navbar-brand {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #000000;
+}
+.navbar-default .navbar-text {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #000000;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #000000;
+    background-color: #359aff;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #000000;
+    background-color: #AFEEEE;
+}
+.navbar-default .navbar-toggle {
+    border-color: #E0FFFF;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #E0FFFF;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+    color: #000000;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #000000;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #000000;
+        background-color: #359aff;
+    }
+}
+
+footer {
+    background-color: #5F9EA0;
+    color: #FFF;
+    padding: 10px;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.Logo{
+    padding: 20px;
+}
+#inputBusca{
+    width: 700px;
+}
+
+.itemsNavBar{
+    top: 5px;
+}
+
+
+
+.menuLogin{
+    padding: 20px; 
+    padding-bottom: 0px;
+    width:200px;
+}
+
+/* Tela inicial */
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  border-radius: 0;
+  border: none;
+  background-color: none;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  opacity: .5;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: none;
+}
+.carousel-control.left {
+    background-image: none;
+
+}
+.carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: none;
+}
+
+.carousel-control {
+  padding-top:10.25%;
+  width:5%;
+}
+
+.seta-carousel{
+  color: #5F9EA0;
+
+}
+
+.tumbnail-promocao{
+  text-align: center;
+}
+
+.botao-nav{
+  margin-top:8px;
+}
+
+/*Tela de Busca */
+
+
+.painel-busca-cabecalho{
+  white-space: nowrap; 
+  width: 13em; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.painel-busca-imagens{
+  width: 150px;
+}
+
+.painel-busca-caption{
+  text-align: center;
+}
+
+/* Formulário de Cadastro */
+
+#selectEstado{
+  width: 75px;
+}
+
+
+/*Alertas*/
+
+.alertas{
+  text-align: center;
+  
+}
+
+
+
+
+
+
+
+
+
