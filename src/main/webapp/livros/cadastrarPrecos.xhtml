@@ -8,17 +8,55 @@
 	<ui:define name="titulo">Cadastro de Preços</ui:define>
 
 	<ui:define name="corpo">
-		<h:form id="formPrecos">
-			<h:panelGrid columns="1" cellpadding="5">
-				<div class="form-group">
-					<p:outputLabel for="idLivro" value="Id: " />
-					<p:inputText id="idLivro" />
+		<div class="col-md-4">
+			<h:form id="formPrecos">
+				<legend>Cadastro de Preços</legend>
+				<div class="form-group col-md-12">
+					<p:outputLabel for="selectLivros" value="Livro:" />
+					<br />
+					<p:selectOneMenu id="selectLivros">
+						<f:selectItem itemLabel="Selecione um livro" itemValue="" />
+					</p:selectOneMenu>
+				</div>
+				<div class="form-group col-md-7">
+					<p:outputLabel for="txtQuantidade" value="Quantidade: " />
+					<p:spinner id="txtQuantidade" />
+				</div>
+				<br />
+				<div class="form-group col-md-6 col-sm-6">
+					<p:outputLabel for="txtValorVenda" value="Valor venda: " />
+					<p:inputText id="txtValorVenda" styleClass="form-control moeda"
+						maxlength="12" />
+				</div>
+				<div class="form-group col-md-6 col-sm-6">
+					<p:outputLabel for="txtValorAluguel" value="Valor aluguel: " />
+					<p:inputText id="txtValorAluguel" styleClass="form-control moeda"
+						maxlength="12" />
+				</div>
+				<div class="form-group col-md-6 col-sm-6">
+					<p:outputLabel for="txtTaxaRenovacao" value="Taxa Renovação: " />
+					<p:inputText id="txtTaxaRenovacao" styleClass="form-control taxa"
+						maxlength="7" />
+				</div>
+				<div class="form-group col-md-6 col-sm-6">
+					<p:outputLabel for="txtTaxaMulta" value="Taxa Multa: " />
+					<p:inputText id="txtTaxaMulta" styleClass="form-control taxa"
+						maxlength="7" />
+				</div>
+				<div class="col-md-12">
+					<p:button value="Cadastrar" styleClass="btn btn-success">
+						<f:param name="productId" value="10" />
+					</p:button>
+
+					<p:button value="Cancelar" styleClass="btn btn-danger">
+						<f:param name="productId" value="20" />
+					</p:button>
 				</div>
 
+			</h:form>
 
-			</h:panelGrid>
-
-		</h:form>
+		</div>
 	</ui:define>
 
 </ui:composition>
+

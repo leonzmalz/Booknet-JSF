@@ -15,6 +15,7 @@
 	<h:outputScript library="js" name="jquery-1.11.1.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 	<h:outputScript library="js" name="jquery.form.min.js" />
+	<h:outputScript library="js" name="jquery.maskMoney.js"/>
 </h:head>
 
 
@@ -81,4 +82,19 @@
 
 </h:body>
 
+<script>
+			function configurarMoeda() {
+				 $(".moeda").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+			}
+			function configurarTaxas() {
+				 $(".taxa").maskMoney({showSymbol:true, decimal:",", symbol:"%", thousands:"."});
+			}
+			
+			$(function(){
+				configurarMoeda();
+				configurarTaxas();
+			});
+</script>
+
 </html>
+
