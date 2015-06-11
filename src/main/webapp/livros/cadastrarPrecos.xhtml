@@ -8,49 +8,70 @@
 	<ui:define name="titulo">Cadastro de Preços</ui:define>
 
 	<ui:define name="corpo">
+		<f:metadata>
+			<f:viewParam name="valores" value="#{cadastrarValoresBean.valores}" />
+			<f:viewAction action="#{cadastrarValoresBean.inicializar()}"
+				onPostback="true" />
+		</f:metadata>
+		<p:messages autoUpdate="true" closable="true" />
 		<div class="col-md-4">
 			<h:form id="formPrecos">
 				<legend>Cadastro de Preços</legend>
-				<div class="form-group col-md-12">
-					<p:outputLabel for="selectLivros" value="Livro:" />
-					<br />
-					<p:selectOneMenu id="selectLivros">
-						<f:selectItem itemLabel="Selecione um livro" itemValue="" />
-					</p:selectOneMenu>
-				</div>
+
+				<p:outputLabel for="selectLivros" value="Livro:" />
+				<br />
+				<p:selectOneMenu id="selectLivros"
+					value="#{cadastrarValoresBean.valores.id}">
+					<f:selectItem itemLabel="Selecione um livro" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{cadastrarValoresBean.listaDeLivros}"
+						var="l" itemValue="#{l.id}" itemLabel="#{l.nome}" />
+				</p:selectOneMenu>
+
 				<div class="form-group col-md-7">
 					<p:outputLabel for="txtQuantidade" value="Quantidade: " />
-					<p:spinner id="txtQuantidade" />
+					<p:spinner id="txtQuantidade"
+						value="#{cadastrarValoresBean.valores.quantidade}" required="true" />
 				</div>
 				<br />
 				<div class="form-group col-md-6 col-sm-6">
 					<p:outputLabel for="txtValorVenda" value="Valor venda: " />
-					<p:inputText id="txtValorVenda" styleClass="form-control moeda"
-						maxlength="12" />
+					<p:inputText id="txtValorVenda"
+						value="#{cadastrarValoresBean.valores.valorVenda}"
+						styleClass="form-control moeda" maxlength="12" required="true">
+						<f:convertNumber type="currency" />
+					</p:inputText>
 				</div>
 				<div class="form-group col-md-6 col-sm-6">
 					<p:outputLabel for="txtValorAluguel" value="Valor aluguel: " />
-					<p:inputText id="txtValorAluguel" styleClass="form-control moeda"
-						maxlength="12" />
+					<p:inputText id="txtValorAluguel"
+						value="#{cadastrarValoresBean.valores.valorAluguel}"
+						styleClass="form-control moeda" maxlength="12">
+
+						<f:convertNumber type="currency" />
+					</p:inputText>
 				</div>
 				<div class="form-group col-md-6 col-sm-6">
 					<p:outputLabel for="txtTaxaRenovacao" value="Taxa Renovação: " />
-					<p:inputText id="txtTaxaRenovacao" styleClass="form-control taxa"
-						maxlength="7" />
+					<p:inputText id="txtTaxaRenovacao"
+						value="#{cadastrarValoresBean.valores.taxaRenovacao}"
+						styleClass="form-control taxa" maxlength="7">
+						<f:convertNumber type="currency" />
+					</p:inputText>
 				</div>
 				<div class="form-group col-md-6 col-sm-6">
 					<p:outputLabel for="txtTaxaMulta" value="Taxa Multa: " />
-					<p:inputText id="txtTaxaMulta" styleClass="form-control taxa"
-						maxlength="7" />
+					<p:inputText id="txtTaxaMulta"
+						value="#{cadastrarValoresBean.valores.multa}"
+						styleClass="form-control taxa" maxlength="7">
+						<f:convertNumber type="currency" />
+					</p:inputText>
 				</div>
 				<div class="col-md-12">
-					<p:button value="Cadastrar" styleClass="btn btn-success">
-						<f:param name="productId" value="10" />
-					</p:button>
+					<p:commandButton value="Salvar" id="btnSalvar"
+						action="#{cadastrarValoresBean.salvar}" update="@form"
+						styleClass="btn btn-success" />
 
-					<p:button value="Cancelar" styleClass="btn btn-danger">
-						<f:param name="productId" value="20" />
-					</p:button>
 				</div>
 
 			</h:form>
