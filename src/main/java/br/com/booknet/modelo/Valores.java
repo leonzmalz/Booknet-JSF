@@ -7,16 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "livros_valores")
-public class Valores implements Serializable {
+public class Valores implements Serializable,SampleEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
 	@Column(name="idLivroValores")
 	private Long id;
 	@Column(nullable = true)
@@ -25,12 +26,12 @@ public class Valores implements Serializable {
 	private BigDecimal valorVenda;
 	@Column(nullable = true, precision = 10, scale = 2)
 	private BigDecimal valorAluguel;
-	@Column(nullable = true, precision = 5, scale = 3)
+	@Column(nullable = true, precision = 5, scale = 2)
 	private BigDecimal taxaRenovacao;
-	@Column(nullable = true, precision = 5, scale = 3)
+	@Column(nullable = true, precision = 5, scale = 2)
 	private BigDecimal multa;
-	
-	
+
+
 	public Long getId() {
 		return id;
 	}
@@ -67,31 +68,30 @@ public class Valores implements Serializable {
 	public void setMulta(BigDecimal multa) {
 		this.multa = multa;
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Valores other = (Valores) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Valores other = (Valores) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+       
+        return true;
+    }
 	
+
 	
 }

@@ -12,7 +12,6 @@
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="font-awesome.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputScript library="js" name="jquery-1.11.1.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 	<h:outputScript library="js" name="jquery.form.min.js" />
 	<h:outputScript library="js" name="jquery.maskMoney.js"/>
@@ -34,7 +33,6 @@
 						Categorias<span class="caret" role="button" aria-expanded="false"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<?php exibirGenerosLista(); ?>
 					</ul>
 				</li>
 			</ul>
@@ -84,16 +82,14 @@
 
 <script>
 			function configurarMoeda() {
-				 $(".moeda").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+				 $(".moeda").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:".",allowZero : true});
 			}
 			function configurarTaxas() {
-				 $(".taxa").maskMoney({showSymbol:true, decimal:",", symbol:"%", thousands:"."});
+				 $(".taxa").maskMoney({showSymbol:true, decimal:",", symbol:"%", thousands:".",allowZero : true});
 			}
-			
-			$(function(){
-				configurarMoeda();
-				configurarTaxas();
-			});
+
+
+
 </script>
 
 </html>

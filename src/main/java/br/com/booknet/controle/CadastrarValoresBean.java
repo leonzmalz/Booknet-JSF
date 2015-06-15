@@ -3,13 +3,20 @@ package br.com.booknet.controle;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
+
+import org.primefaces.context.RequestContext;
 
 import br.com.booknet.modelo.Livro;
 import br.com.booknet.modelo.Valores;
 import br.com.booknet.repositorio.RepositorioDeGeneros;
 import br.com.booknet.repositorio.RepositorioDeLivros;
+import br.com.booknet.repositorio.RepositorioDeValores;
 
 @ManagedBean
 @ViewScoped
@@ -17,26 +24,43 @@ public class CadastrarValoresBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Valores valores;
+	private Valores valor;
 	private List<Livro> listaDeLivros;
 	private RepositorioDeLivros livros;
+	private RepositorioDeValores valores;
+	private Livro livro;
 
 	public CadastrarValoresBean() {
 		// TODO Auto-generated constructor stub
-		this.valores = new Valores();
-		this.livros = new RepositorioDeLivros();
+		this.valor   = new Valores();
+		this.livros  = new RepositorioDeLivros();
+		this.valores = new RepositorioDeValores();
+		
+	}
+	
+	public void iniciarMascaras(){
+		RequestContext.getCurrentInstance().execute("configurarMoeda();");
+		RequestContext.getCurrentInstance().execute("configurarTaxas();");
 	}
 
 	public void inicializar() {
 		this.listaDeLivros = livros.todos();
 	}
 
-	public Valores getValores() {
-		return valores;
+	public Valores getValor() {
+		return valor;
 	}
 
-	public void setValores(Valores valores) {
-		this.valores = valores;
+	public void setValores(Valores valor) {
+		this.valor = valor;
+	}
+	
+	public Livro getLivro() {
+		return livro;
+	}
+	
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
 	public List<Livro> getListaDeLivros() {
@@ -48,13 +72,14 @@ public class CadastrarValoresBean implements Serializable {
 	}
 
 	public void salvar() {
-		/*produtos.guardar(produto, categoria);
-
-		this.produto = new Produto();
+		System.out.println(this.valor.getId());
+		valores.guardar(this.valor);
 
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Produto " + operacao + " com sucesso")); */
+				new FacesMessage("Valores cadastrados com sucesso")); 
 
 	}
+	
+
 
 }
