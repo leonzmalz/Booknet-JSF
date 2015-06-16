@@ -181,6 +181,9 @@ footer {
   width: 75px;
 }
 
+.input-search{
+	width:550px !important;
+}
 
 /*Alertas*/
 
@@ -188,6 +191,8 @@ footer {
   text-align: center;
   
 }
+
+
 
 
 

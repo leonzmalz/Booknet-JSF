@@ -22,5 +22,9 @@ public class RepositorioDeValores {
 		
 		return valores;
 	}
+	
+	public Valores buscar(Long id){
+		return manager.find(Valores.class, id);
+	}
 
 }

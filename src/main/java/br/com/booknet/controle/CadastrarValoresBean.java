@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
@@ -32,13 +33,13 @@ public class CadastrarValoresBean implements Serializable {
 
 	public CadastrarValoresBean() {
 		// TODO Auto-generated constructor stub
-		this.valor   = new Valores();
-		this.livros  = new RepositorioDeLivros();
+		this.valor = new Valores();
+		this.livros = new RepositorioDeLivros();
 		this.valores = new RepositorioDeValores();
-		
+
 	}
-	
-	public void iniciarMascaras(){
+
+	public void iniciarMascaras() {
 		RequestContext.getCurrentInstance().execute("configurarMoeda();");
 		RequestContext.getCurrentInstance().execute("configurarTaxas();");
 	}
@@ -54,11 +55,11 @@ public class CadastrarValoresBean implements Serializable {
 	public void setValores(Valores valor) {
 		this.valor = valor;
 	}
-	
+
 	public Livro getLivro() {
 		return livro;
 	}
-	
+
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
@@ -76,10 +77,13 @@ public class CadastrarValoresBean implements Serializable {
 		valores.guardar(this.valor);
 
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Valores cadastrados com sucesso")); 
+				new FacesMessage("Valores cadastrados com sucesso"));
 
 	}
-	
 
+	public void buscar() {
+
+
+	}
 
 }

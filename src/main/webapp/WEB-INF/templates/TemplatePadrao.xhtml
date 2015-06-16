@@ -14,7 +14,7 @@
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 	<h:outputScript library="js" name="jquery.form.min.js" />
-	<h:outputScript library="js" name="jquery.maskMoney.js"/>
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
 </h:head>
 
 
@@ -25,6 +25,16 @@
 		<div class="navbar-header">
 			<a class="navbar-brand " href="../index.php">Book.Net</a>
 		</div>
+		<h:form class="navbar-form navbar-left " role="search">
+			<div>
+				<p:inputText id="txtBuscar" styleClass="form-control input-search"
+					value="#{templatePadraoBean.nomeLivro}" />
+				<p:button icon="ui-icon-search" title="Pesquisar"
+					styleClass="btn btn-danger btn-lg" outcome="/livros/buscarLivros">
+					<f:param name="nomeLivro" value="#{templatePadraoBean.nomeLivro}" />
+				</p:button>
+			</div>
+		</h:form>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li class="dropdown">
@@ -66,8 +76,7 @@
 	</nav>
 
 
-	<main id="container" class="container">
-		<ui:insert name="corpo" />
+	<main id="container" class="container"> <ui:insert name="corpo" />
 	</main>
 
 	<footer>
