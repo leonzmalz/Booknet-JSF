@@ -8,6 +8,13 @@
 	<ui:define name="titulo">Buscar Livros</ui:define>
 
 	<ui:define name="corpo">
+	    <f:metadata>
+			<f:viewParam name="nomeLivro" value="#{buscarLivrosBean.nomeLivro}" />
+		</f:metadata>
+		
+	<p>Valor do parâmetro <strong>"
+	    #{buscarLivrosBean.nomeLivro}"</strong>
+	</p>
 
 	</ui:define>
 

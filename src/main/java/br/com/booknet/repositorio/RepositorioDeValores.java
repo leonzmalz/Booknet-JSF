@@ -19,12 +19,12 @@ public class RepositorioDeValores {
 		trx.begin();
 		valores = manager.merge(valores);
 		trx.commit();
-		
 		return valores;
 	}
 	
 	public Valores buscar(Long id){
 		return manager.find(Valores.class, id);
+		
 	}
 
 }

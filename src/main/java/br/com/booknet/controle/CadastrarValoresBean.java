@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
@@ -36,7 +35,6 @@ public class CadastrarValoresBean implements Serializable {
 		this.valor = new Valores();
 		this.livros = new RepositorioDeLivros();
 		this.valores = new RepositorioDeValores();
-
 	}
 
 	public void iniciarMascaras() {
@@ -73,7 +71,7 @@ public class CadastrarValoresBean implements Serializable {
 	}
 
 	public void salvar() {
-		System.out.println(this.valor.getId());
+		System.out.println(this.valor);
 		valores.guardar(this.valor);
 
 		FacesContext.getCurrentInstance().addMessage(null,
@@ -82,8 +80,25 @@ public class CadastrarValoresBean implements Serializable {
 	}
 
 	public void buscar() {
+		Valores valorBuscado = valores.buscar(this.valor.getId());
+		System.out.println(valorBuscado);
+		if(valorBuscado != null){
+			this.valor = valorBuscado;
+			this.valor.setMulta(valorBuscado.getMulta());
+			this.valor.setQuantidade(valorBuscado.getQuantidade());
+			this.valor.setTaxaRenovacao(valorBuscado.getTaxaRenovacao());
+			this.valor.setValorAluguel(valorBuscado.getTaxaRenovacao());
+			this.valor.setValorVenda(valorBuscado.getValorVenda());
+		}else
+			this.valor.clear();
 
-
+			
+			
+		
 	}
+	
+	
+	
+
 
 }

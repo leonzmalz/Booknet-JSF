@@ -1,5 +1,7 @@
 package br.com.booknet.modelo;
 
+
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -68,29 +70,75 @@ public class Valores implements Serializable,SampleEntity {
 	public void setMulta(BigDecimal multa) {
 		this.multa = multa;
 	}
-
-	@Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
-        return hash;
-    }
-
+    
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Valores other = (Valores) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
-       
-        return true;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((multa == null) ? 0 : multa.hashCode());
+		result = prime * result + quantidade;
+		result = prime * result
+				+ ((taxaRenovacao == null) ? 0 : taxaRenovacao.hashCode());
+		result = prime * result
+				+ ((valorAluguel == null) ? 0 : valorAluguel.hashCode());
+		result = prime * result
+				+ ((valorVenda == null) ? 0 : valorVenda.hashCode());
+		return result;
+	}
+    
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Valores other = (Valores) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (multa == null) {
+			if (other.multa != null)
+				return false;
+		} else if (!multa.equals(other.multa))
+			return false;
+		if (quantidade != other.quantidade)
+			return false;
+		if (taxaRenovacao == null) {
+			if (other.taxaRenovacao != null)
+				return false;
+		} else if (!taxaRenovacao.equals(other.taxaRenovacao))
+			return false;
+		if (valorAluguel == null) {
+			if (other.valorAluguel != null)
+				return false;
+		} else if (!valorAluguel.equals(other.valorAluguel))
+			return false;
+		if (valorVenda == null) {
+			if (other.valorVenda != null)
+				return false;
+		} else if (!valorVenda.equals(other.valorVenda))
+			return false;
+		return true;
+	}
+	
+	@Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return Long.toString(this.id);
     }
+    
+    public void clear(){
+		this.multa = null;
+		this.quantidade = 0;
+		this.taxaRenovacao = null;
+		this.valorAluguel = null;
+		this.valorVenda = null;
+	}
 	
 
 	

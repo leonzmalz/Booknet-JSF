@@ -4,19 +4,15 @@ import java.io.Serializable;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
-import br.com.booknet.modelo.Valores;
-
 @ManagedBean
-@RequestScoped
-public class TemplatePadraoBean implements Serializable {
+@ViewScoped
+public class BuscarLivrosBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-
-	private String nomeLivro;
 	
+	private String nomeLivro;
 	
 	public String getNomeLivro() {
 		return nomeLivro;
@@ -25,11 +21,6 @@ public class TemplatePadraoBean implements Serializable {
 	public void setNomeLivro(String nomeLivro) {
 		this.nomeLivro = nomeLivro;
 	}
-	
-	public void atualizarNome(){
-		System.out.println(this.nomeLivro);
-	}
-	
-
+    
 
 }
