@@ -192,6 +192,17 @@ footer {
   
 }
 
+/*Tabela Busca*/
+
+.tabela-busca{
+	width:80px;
+	text-align:center;
+}
+
+.img-busca{
+	width:100px;
+
+}
 
 
 

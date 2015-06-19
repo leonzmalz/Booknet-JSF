@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.booknet.modelo.Livro;
 import br.com.booknet.util.JPAUtil;
@@ -18,6 +19,12 @@ public class RepositorioDeLivros implements Serializable {
 		return manager.createQuery("from Livro", 
                 Livro.class).getResultList();
 		
+	}
+	
+	public List<Livro> todosComNome(String nome){
+		 Query query = manager.createQuery("from Livro WHERE nome LIKE :pNome",Livro.class);
+		 query.setParameter("pNome", "%" + nome + "%");
+		 return query.getResultList();
 	}
 
 }

@@ -7,6 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.hibernate.mapping.Map;
 
 import br.com.booknet.modelo.Valores;
 
@@ -26,6 +29,7 @@ public class TemplatePadraoBean implements Serializable {
 	public void setNomeLivro(String nomeLivro) {
 		this.nomeLivro = nomeLivro;
 	}
+	
 	
 
 }
