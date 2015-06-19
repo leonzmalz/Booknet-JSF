@@ -5,12 +5,13 @@ import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import br.com.booknet.modelo.Valores;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TemplatePadraoBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,10 +27,5 @@ public class TemplatePadraoBean implements Serializable {
 		this.nomeLivro = nomeLivro;
 	}
 	
-	public void atualizarNome(){
-		System.out.println(this.nomeLivro);
-	}
-	
-
 
 }

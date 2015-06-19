@@ -28,14 +28,17 @@
 		<h:form class="navbar-form navbar-left " role="search">
 			<div>
 				<p:inputText id="txtBuscar" styleClass="form-control input-search"
-					placeholder="Buscar Livro" value="#{templatePadraoBean.nomeLivro}">
-					<p:ajax event="change"
-						listener="#{templatePadraoBean.atualizarNome}" />
+					rendered="true" placeholder="Buscar Livro"
+					value="#{templatePadraoBean.nomeLivro}">
+					<!-- 					<f:ajax  render="btnEnviar" /> -->
 				</p:inputText>
-				<p:button icon="ui-icon-search" title="Pesquisar"
-					styleClass="btn btn-danger btn-lg" outcome="/livros/buscarLivros">
-					<f:param name="nomeLivro" value="#{templatePadraoBean.nomeLivro}" />
-				</p:button>
+				<p:commandButton action="/livros/buscarLivros" ajax="false"
+					styleClass="btn btn-danger btn-lg" icon="ui-icon-search"
+					 title="Pesquisar">
+					<f:setPropertyActionListener target="#{buscarLivrosBean.nomeLivro}"
+						value="#{templatePadraoBean.nomeLivro}" />
+				</p:commandButton>
+
 
 			</div>
 		</h:form>
