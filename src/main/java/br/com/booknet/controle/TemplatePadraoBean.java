@@ -14,7 +14,7 @@ import org.hibernate.mapping.Map;
 import br.com.booknet.modelo.Valores;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class TemplatePadraoBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +28,10 @@ public class TemplatePadraoBean implements Serializable {
 	
 	public void setNomeLivro(String nomeLivro) {
 		this.nomeLivro = nomeLivro;
+	}
+	
+	public void iniciarSessao(){
+		System.out.println("certo");
 	}
 	
 	

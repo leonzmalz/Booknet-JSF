@@ -4,7 +4,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -30,16 +32,11 @@
 				<p:inputText id="txtBuscar" styleClass="form-control input-search"
 					placeholder="Buscar Livro" value="#{templatePadraoBean.nomeLivro}">
 				</p:inputText>
-				<p:commandButton action="/livros/buscarLivros" ajax="false"
+				<p:commandButton type="button" action="#{templatePadraoBean.iniciarSessao}"
 					styleClass="btn btn-danger btn-lg" icon="ui-icon-search"
 					title="Pesquisar">
-					<!-- 					<f:setPropertyActionListener target="#{buscarLivrosBean.nomeLivro}" -->
-					<!-- 						value="#{templatePadraoBean.nomeLivro}" /> -->
-					<f:param name="nomeLivro" value="#{templatePadraoBean.nomeLivro}" />
-
+<!-- 					<f:param name="nomeLivro" value="#{templatePadraoBean.nomeLivro}"/> -->
 				</p:commandButton>
-
-
 			</div>
 		</h:form>
 		<div class="collapse navbar-collapse">

@@ -3,13 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 	<ui:define name="titulo">Buscar Livros</ui:define>
 
 	<ui:define name="corpo">
 		<f:metadata>
-			<f:viewParam name="nomeLivro" value="#{buscarLivrosBean.nomeLivro}" />
+			<f:viewParam name="nomeLivro" value="#{buscarLivrosBean.nomeLivro}"/>
 			<f:viewAction action="#{buscarLivrosBean.carregarLivrosPorNome}"
 				onPostback="true" />
 		</f:metadata>

@@ -15,7 +15,7 @@ import br.com.booknet.modelo.Livro;
 import br.com.booknet.repositorio.RepositorioDeLivros;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class BuscarLivrosBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
