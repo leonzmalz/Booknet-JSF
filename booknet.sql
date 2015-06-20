@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Jun 11, 2015 as 02:44 PM
+-- Tempo de Geração: Jun 20, 2015 as 04:43 PM
 -- Versão do Servidor: 5.5.8
 -- Versão do PHP: 5.3.5
 
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `aluguel` (
 CREATE TABLE IF NOT EXISTS `generos` (
   `idGenero` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
+  `id` bigint(20) NOT NULL,
   PRIMARY KEY (`idGenero`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
@@ -56,17 +57,17 @@ CREATE TABLE IF NOT EXISTS `generos` (
 -- Extraindo dados da tabela `generos`
 --
 
-INSERT INTO `generos` (`idGenero`, `nome`) VALUES
-(15, 'Aventura'),
-(22, 'Auto-ajuda'),
-(23, 'Culinária'),
-(25, 'Informática'),
-(26, 'Contos'),
-(27, 'Educação'),
-(28, 'Crônicas'),
-(29, 'Saúde'),
-(30, 'Outros'),
-(31, 'Gênero Teste');
+INSERT INTO `generos` (`idGenero`, `nome`, `id`) VALUES
+(15, 'Aventura', 0),
+(22, 'Auto-ajuda', 0),
+(23, 'Culinária', 0),
+(25, 'Informática', 0),
+(26, 'Contos', 0),
+(27, 'Educação', 0),
+(28, 'Crônicas', 0),
+(29, 'Saúde', 0),
+(30, 'Outros', 0),
+(31, 'Gênero Teste', 0);
 
 -- --------------------------------------------------------
 
@@ -84,29 +85,27 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `editora` varchar(50) DEFAULT NULL,
   `autor` varchar(100) DEFAULT NULL,
   `nacionalidade` varchar(45) DEFAULT NULL,
-  `idLivroValores` int(11) DEFAULT NULL,
   PRIMARY KEY (`idLivro`),
-  KEY `fk_Livro_Genero_idx` (`idGenero`),
-  KEY `fk_Livro_Valor_idx` (`idLivroValores`)
+  KEY `fk_Livro_Genero_idx` (`idGenero`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
 -- Extraindo dados da tabela `livros`
 --
 
-INSERT INTO `livros` (`idLivro`, `nome`, `idGenero`, `permiteAluguel`, `foto`, `ISBN`, `editora`, `autor`, `nacionalidade`, `idLivroValores`) VALUES
-(45, 'Dominando o Android', 25, 'S', 'livro1.png', '9999999', 'Novatec', 'Joaquim José da Silva Xavier', 'Nacional', NULL),
-(47, 'Quebre a cabeça! Padrões de Projeto', 25, 'S', 'livro2.jpg', '123131', 'Desconhecida', 'Alguem', 'Internacional', NULL),
-(48, 'Pai Rico Pai Pobre', 22, 'S', 'livro7.png', '98918231', 'Campus', 'Robert T. KyrsoSak', 'Nacional', NULL),
-(51, 'Pizza do Faustão', 23, 'S', 'livro3.jpg', '988123131', 'Globo', 'Faustão', 'Nacional', NULL),
-(52, 'O fascinante império de steve jobs', 15, 'N', 'livro4.jpg', '8989898', 'Desconhecida', 'Michael Mortiz', 'Internacional', NULL),
-(53, 'A música do silêncio', 26, 'N', 'livro5.jpg', '8718726318', 'Arqueiro', 'Patrick Rothfuss', 'Nacional', NULL),
-(54, 'Percy Jackson e o ladrão de raios', 15, 'S', 'livro6.jpg', '89898989', 'Desconhecida', 'Rick Riordan', 'Internacional', NULL),
-(55, 'As crônicas de gelo e fogo: A guerra dos tronos', 15, 'N', 'livro8.png', '989898', 'Leya', 'Geroge R. R. Martin', 'Internacional', NULL),
-(56, 'Dicionário Jurídico', 22, 'N', 'livro9.png', '9898989', 'Cronus', 'Thais Hae', 'Nacional', NULL),
-(57, 'Jardim Secreto', 30, 'N', 'images.livrariasaraiva.com.br.png', '9788543101637', 'Não informado', 'Basford, Johanna', 'Internacional', NULL),
-(58, 'Guerra Civil', 15, 'S', 'guerracivil.png', '9788542804126', 'Marvel', 'Moore, Stuart ', 'Internacional', NULL),
-(59, 'Teste', 23, 'S', 'Baymax-Poster-e1416440487417.jpg', '123123', '31231', '123123', '31231', NULL);
+INSERT INTO `livros` (`idLivro`, `nome`, `idGenero`, `permiteAluguel`, `foto`, `ISBN`, `editora`, `autor`, `nacionalidade`) VALUES
+(45, 'Dominando o Android', 25, 'S', 'livro1.png', '9999999', 'Novatec', 'Joaquim José da Silva Xavier', 'Nacional'),
+(47, 'Quebre a cabeça! Padrões de Projeto', 25, 'S', 'livro2.jpg', '123131', 'Desconhecida', 'Alguem', 'Internacional'),
+(48, 'Pai Rico Pai Pobre', 22, 'S', 'livro7.png', '98918231', 'Campus', 'Robert T. KyrsoSak', 'Nacional'),
+(51, 'Pizza do Faustão', 23, 'S', 'livro3.jpg', '988123131', 'Globo', 'Faustão', 'Nacional'),
+(52, 'O fascinante império de steve jobs', 15, 'N', 'livro4.jpg', '8989898', 'Desconhecida', 'Michael Mortiz', 'Internacional'),
+(53, 'A música do silêncio', 26, 'N', 'livro5.jpg', '8718726318', 'Arqueiro', 'Patrick Rothfuss', 'Nacional'),
+(54, 'Percy Jackson e o ladrão de raios', 15, 'S', 'livro6.jpg', '89898989', 'Desconhecida', 'Rick Riordan', 'Internacional'),
+(55, 'As crônicas de gelo e fogo: A guerra dos tronos', 15, 'N', 'livro8.png', '989898', 'Leya', 'Geroge R. R. Martin', 'Internacional'),
+(56, 'Dicionário Jurídico', 22, 'N', 'livro9.png', '9898989', 'Cronus', 'Thais Hae', 'Nacional'),
+(57, 'Jardim Secreto', 30, 'N', 'images.livrariasaraiva.com.br.png', '9788543101637', 'Não informado', 'Basford, Johanna', 'Internacional'),
+(58, 'Guerra Civil', 15, 'S', 'guerracivil.png', '9788542804126', 'Marvel', 'Moore, Stuart ', 'Internacional'),
+(59, 'Teste', 23, 'S', 'Baymax-Poster-e1416440487417.jpg', '123123', '31231', '123123', '31231');
 
 -- --------------------------------------------------------
 
@@ -115,14 +114,14 @@ INSERT INTO `livros` (`idLivro`, `nome`, `idGenero`, `permiteAluguel`, `foto`, `
 --
 
 CREATE TABLE IF NOT EXISTS `livros_valores` (
-  `idLivroValores` int(11) NOT NULL AUTO_INCREMENT,
+  `idLivroValores` int(11) NOT NULL,
   `quantidade` int(11) DEFAULT NULL,
   `valorVenda` decimal(10,2) DEFAULT NULL,
   `valorAluguel` decimal(10,2) DEFAULT NULL,
-  `taxaRenovacao` decimal(5,3) DEFAULT NULL,
-  `multa` decimal(5,3) DEFAULT NULL,
+  `taxaRenovacao` decimal(5,2) DEFAULT NULL,
+  `multa` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`idLivroValores`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `livros_valores`
@@ -263,9 +262,8 @@ ALTER TABLE `aluguel`
 -- Restrições para a tabela `livros`
 --
 ALTER TABLE `livros`
-  ADD CONSTRAINT `fk_Livro_Valor` FOREIGN KEY (`idLivroValores`) REFERENCES `livros_valores` (`idLivroValores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Livro_Genero` FOREIGN KEY (`idGenero`) REFERENCES `generos` (`idGenero`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+  
 --
 -- Restrições para a tabela `negociacoes`
 --

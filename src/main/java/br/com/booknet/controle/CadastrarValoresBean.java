@@ -44,6 +44,7 @@ public class CadastrarValoresBean implements Serializable {
 
 	public void inicializar() {
 		this.listaDeLivros = livros.todos();
+
 	}
 
 	public Valores getValor() {
@@ -71,7 +72,6 @@ public class CadastrarValoresBean implements Serializable {
 	}
 
 	public void salvar() {
-		System.out.println(this.valor);
 		valores.guardar(this.valor);
 
 		FacesContext.getCurrentInstance().addMessage(null,
@@ -82,23 +82,15 @@ public class CadastrarValoresBean implements Serializable {
 	public void buscar() {
 		Valores valorBuscado = valores.buscar(this.valor.getId());
 		System.out.println(valorBuscado);
-		if(valorBuscado != null){
-			this.valor = valorBuscado;
+		if (valorBuscado != null) {
+			// this.valor = valorBuscado;
 			this.valor.setMulta(valorBuscado.getMulta());
 			this.valor.setQuantidade(valorBuscado.getQuantidade());
 			this.valor.setTaxaRenovacao(valorBuscado.getTaxaRenovacao());
 			this.valor.setValorAluguel(valorBuscado.getTaxaRenovacao());
 			this.valor.setValorVenda(valorBuscado.getValorVenda());
-		}else
+		} else
 			this.valor.clear();
-
-			
-			
-		
 	}
-	
-	
-	
-
 
 }

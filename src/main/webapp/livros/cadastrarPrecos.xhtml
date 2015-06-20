@@ -13,14 +13,14 @@
 				onPostback="true" />
 			<f:viewAction action="#{cadastrarValoresBean.iniciarMascaras}"
 				onPostback="true" />
-
-		</f:metadata>
+				
+			</f:metadata>
 		<p:messages autoUpdate="true" closable="true" />
 		<div class="col-md-4">
 			<h:form id="formPrecos">
-				<legend>Cadastro de Preços</legend> 
- 				<div class="col-md-12 form-group"> 
- 					<p:outputLabel for="selectLivros" value="Livro:" /> 
+				<legend>Cadastro de Preços</legend>
+				<div class="col-md-12 form-group">
+					<p:outputLabel for="selectLivros" value="Livro:" />
 					<br />
 					<p:selectOneMenu id="selectLivros"
 						value="#{cadastrarValoresBean.valor.id}">

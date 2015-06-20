@@ -33,7 +33,6 @@ public class Valores implements Serializable,SampleEntity {
 	@Column(nullable = true, precision = 5, scale = 2)
 	private BigDecimal multa;
 
-
 	public Long getId() {
 		return id;
 	}
@@ -70,7 +69,7 @@ public class Valores implements Serializable,SampleEntity {
 	public void setMulta(BigDecimal multa) {
 		this.multa = multa;
 	}
-    
+
     @Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,6 +124,7 @@ public class Valores implements Serializable,SampleEntity {
 			return false;
 		return true;
 	}
+	
 	
 	@Override
     public String toString() {

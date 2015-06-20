@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -38,10 +39,7 @@ public class Livro implements Serializable, SampleEntity {
 	@ManyToOne
 	@JoinColumn(name = "idGenero", nullable = false)
 	private Genero genero;
-	@OneToOne
-	@JoinColumn(name = "idLivroValores", nullable = true)
-	private Valores valores;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -114,14 +112,6 @@ public class Livro implements Serializable, SampleEntity {
 		this.genero = genero;
 	}
 
-	public Valores getValores() {
-		return valores;
-	}
-
-	public void setValores(Valores valores) {
-		this.valores = valores;
-	}
-	
 	@Override
     public String toString() {
         return this.nome;
@@ -131,7 +121,6 @@ public class Livro implements Serializable, SampleEntity {
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 97 * hash + (this.nome != null ? this.nome.hashCode() : 0);
         return hash;
     }
 
@@ -145,9 +134,6 @@ public class Livro implements Serializable, SampleEntity {
         }
         final Livro other = (Livro) obj;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
-        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
             return false;
         }
         return true;

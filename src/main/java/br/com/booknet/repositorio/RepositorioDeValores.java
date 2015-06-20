@@ -1,5 +1,7 @@
 package br.com.booknet.repositorio;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -26,5 +28,6 @@ public class RepositorioDeValores {
 		return manager.find(Valores.class, id);
 		
 	}
-
+	
+	
 }

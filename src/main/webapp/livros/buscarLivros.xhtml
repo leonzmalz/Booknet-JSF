@@ -3,59 +3,63 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 
 	<ui:define name="titulo">Buscar Livros</ui:define>
 
 	<ui:define name="corpo">
-		<f:metadata>
-			<f:viewParam name="nomeLivro" value="#{buscarLivrosBean.nomeLivro}"/>
-			<f:viewAction action="#{buscarLivrosBean.carregarLivrosPorNome}"
-				onPostback="true" />
-		</f:metadata>
-
 		<p:messages autoUpdate="true" showDetail="true" closable="true" />
-		<h:form  class="navbar-form navbar-left " role="search">
+		<div class="row	">
+			<h:form class="navbar-form navbar-left " role="search">
+				<div>
+					<p:inputText id="txtBuscar" styleClass="form-control input-search"
+						placeholder="Buscar Livro" value="#{buscarLivrosBean.nomeLivro}" />
+					<p:commandButton action="#{buscarLivrosBean.carregarLivrosPorNome}"
+						update="tabelaLivros" styleClass="btn btn-danger btn-lg"
+						icon="ui-icon-search" title="Pesquisar">
+					</p:commandButton>
+					<BR /> <BR />
 
-			<div class="col-md-12">
-				<p:inputText id="txtBuscar" styleClass="form-control input-search"
-					placeholder="Buscar Livro" value="#{buscarLivrosBean.nomeLivro}" />
-				<p:commandButton action="#{buscarLivrosBean.carregarLivrosPorNome}"
-					update="tabelaLivros" styleClass="btn btn-danger btn-lg"
-					icon="ui-icon-search" title="Pesquisar">
-				</p:commandButton>
-				<BR /><BR />
-			</div>
-			<div class="col-md-12">
-				<p:dataTable id="tabelaLivros"
-					value="#{buscarLivrosBean.listaDeLivros}" var="livro"
-					emptyMessage="Nenhum Livro encontrado." rows="5" paginator="true"
-					paginatorAlwaysVisible="false" paginatorPosition="bottom">
-					<p:column headerText="Foto" styleClass="tabela-busca">
+				</div>
+			</h:form>
+
+		</div>
+
+		<div class="row">
+			<p:dataScroller value="#{buscarLivrosBean.listaDeLivros}" var="livro"
+				id="tabelaLivros">
+				<f:facet name="header">
+					Lista de Livros
+        		</f:facet>
+				<p:commandLink type="button" onclick="PF('dlg2').show();">
+					<h:panelGrid columns="3">
 						<h:graphicImage library="images\livros" name="#{livro.foto}"
 							styleClass=" img img-responsive img-busca" />
-					</p:column>
-					<p:column headerText="Nome" styleClass="tabela-busca">
-						<h:outputText value="#{livro.nome}" />
-					</p:column>
-					<p:column headerText="Gênero" styleClass="tabela-busca">
-						<h:outputText value="#{livro.genero.nome}" />
-					</p:column>
-					<p:column headerText="Preço" styleClass="tabela-busca">
-				#{livro.valores.id}
-					<h:outputText value="#{livro.valores.valorVenda}" />
-					</p:column>
-					<p:column headerText="Autor" styleClass="tabela-busca">
-						<h:outputText value="#{livro.autor}" />
-					</p:column>
+						<p:outputPanel>
+							<h:panelGrid columns="2">
+								<h:outputText value="Nome:" />
+								<h:outputText value="#{livro.nome}" />
 
-				</p:dataTable>
-			</div>
+								<h:outputText value="Gênero:" />
+								<h:outputText value="#{livro.genero.nome}" />
 
+								<h:outputText value="Preço:" />
+								<h:outputText value="#{buscarLivrosBean.getValor(livro.id)}" />
+							</h:panelGrid>
+						</p:outputPanel>
 
-		</h:form>
+					</h:panelGrid>
+					<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"
+						height="100">
+						<h:outputText value="This is a Modal Dialog." />
+					</p:dialog>
+
+				</p:commandLink>
+			</p:dataScroller>
+
+		</div>
+
 	</ui:define>
 
 </ui:composition>
