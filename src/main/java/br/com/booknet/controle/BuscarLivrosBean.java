@@ -13,6 +13,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.StreamedContent;
 
 import br.com.booknet.modelo.Livro;
@@ -30,6 +31,7 @@ public class BuscarLivrosBean implements Serializable {
 	private List<Livro> listaDeLivros;
 	private RepositorioDeLivros livros;
 	private RepositorioDeValores valores;
+	private Livro livroSelecionado;
 	
 	public BuscarLivrosBean() {
 		this.livros = new RepositorioDeLivros();
@@ -52,6 +54,10 @@ public class BuscarLivrosBean implements Serializable {
 		this.listaDeLivros = listaDeLivros;
 	}
 	
+	public Livro getLivroSelecionado() {
+		return livroSelecionado;
+	}
+	
 	public void carregarLivrosPorNome(){
 		System.out.println(this.nomeLivro);
 		this.listaDeLivros = livros.todosComNome(this.nomeLivro);
@@ -72,8 +78,9 @@ public class BuscarLivrosBean implements Serializable {
 		return null;
 	}
 	
-	
-    
-	
+	public void selecionarLivro(Livro l){
+		this.livroSelecionado = l;
+		RequestContext.getCurrentInstance().execute("PF('modalLivro').show();");
+	}
 
 }

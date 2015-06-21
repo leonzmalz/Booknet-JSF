@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "livros")
-public class Livro implements Serializable, SampleEntity {
+public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -112,12 +112,12 @@ public class Livro implements Serializable, SampleEntity {
 		this.genero = genero;
 	}
 
-	@Override
-    public String toString() {
-        return this.nome;
-    }
-
     @Override
+	public String toString() {
+		return "id=" + id + ", nome=" + nome;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);

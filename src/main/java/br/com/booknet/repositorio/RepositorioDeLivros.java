@@ -1,5 +1,6 @@
 package br.com.booknet.repositorio;
 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class RepositorioDeLivros implements Serializable {
 		 Query query = manager.createQuery("from Livro WHERE nome LIKE :pNome",Livro.class);
 		 query.setParameter("pNome", "%" + nome + "%");
 		 return query.getResultList();
+	}
+	
+	public Livro buscaPorId(Long id) {
+		return manager.find(Livro.class, id);
 	}
 
 }

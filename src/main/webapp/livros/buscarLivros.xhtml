@@ -32,7 +32,9 @@
 				<f:facet name="header">
 					Lista de Livros
         		</f:facet>
-				<p:commandLink type="button" onclick="PF('dlg2').show();">
+				<p:commandLink type="button">
+					<p:ajax listener="#{buscarLivrosBean.selecionarLivro(livro)}"
+						update=":modalLivro" />
 					<h:panelGrid columns="3">
 						<h:graphicImage library="images\livros" name="#{livro.foto}"
 							styleClass=" img img-responsive img-busca" />
@@ -48,15 +50,49 @@
 								<h:outputText value="#{buscarLivrosBean.getValor(livro.id)}" />
 							</h:panelGrid>
 						</p:outputPanel>
-
 					</h:panelGrid>
-					<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"
-						height="100">
-						<h:outputText value="This is a Modal Dialog." />
-					</p:dialog>
-
 				</p:commandLink>
 			</p:dataScroller>
+			<p:dialog header="Comprar Livro" widgetVar="modalLivro" modal="true"
+				width="50%" height="100%" id="modalLivro">
+				<h:panelGrid columns="3">
+					<h:graphicImage library="images\livros"
+						name="#{buscarLivrosBean.livroSelecionado.foto}"
+						styleClass=" img img-responsive" />
+					<p:outputPanel>
+						<h:panelGrid columns="2">
+							<h:outputText value="Nome:" />
+							<h:outputText value="#{buscarLivrosBean.livroSelecionado.nome}" />
+
+							<h:outputText value="Gênero:" />
+							<h:outputText
+								value="#{buscarLivrosBean.livroSelecionado.genero.nome}" />
+
+							<h:outputText value="Editora:" />
+							<h:outputText
+								value="#{buscarLivrosBean.livroSelecionado.editora}" />
+
+							<h:outputText value="Autor:" />
+							<h:outputText value="#{buscarLivrosBean.livroSelecionado.autor}" />
+
+							<h:outputText value="Nacionalidade:" />
+							<h:outputText
+								value="#{buscarLivrosBean.livroSelecionado.nacionalidade}" />
+
+							<h:outputText value="Preço:" />
+							<h:outputText
+								value="#{buscarLivrosBean.getValor(buscarLivrosBean.livroSelecionado.id)}" />
+							<p:button outcome="/livros/comprarLivro" value="Comprar"
+								styleClass="btn btn-success">
+								<f:param name="livroSelecionado" value="#{buscarLivrosBean.livroSelecionado.id}"/>		
+							</p:button>
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:panelGrid>
+
+
+			</p:dialog>
+
 
 		</div>
 
