@@ -24,63 +24,74 @@ import br.com.booknet.repositorio.RepositorioDeValores;
 @ManagedBean
 @ViewScoped
 public class BuscarLivrosBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private String nomeLivro;
 	private List<Livro> listaDeLivros;
 	private RepositorioDeLivros livros;
 	private RepositorioDeValores valores;
 	private Livro livroSelecionado;
-	
+
 	public BuscarLivrosBean() {
 		this.livros = new RepositorioDeLivros();
 		this.valores = new RepositorioDeValores();
 	}
-	
+
 	public String getNomeLivro() {
 		return nomeLivro;
 	}
-	
+
 	public void setNomeLivro(String nomeLivro) {
 		this.nomeLivro = nomeLivro;
 	}
-	
+
 	public List<Livro> getListaDeLivros() {
 		return listaDeLivros;
 	}
-	
+
 	public void setListaDeLivros(List<Livro> listaDeLivros) {
 		this.listaDeLivros = listaDeLivros;
 	}
-	
+
 	public Livro getLivroSelecionado() {
 		return livroSelecionado;
 	}
-	
-	public void carregarLivrosPorNome(){
+
+	public void carregarLivrosPorNome() {
 		System.out.println(this.nomeLivro);
 		this.listaDeLivros = livros.todosComNome(this.nomeLivro);
-	
+
 	}
-	
-	public String getValor(Long id){
-		System.out.println(id);
-		Valores valorBanco = valores.buscar(id);
-		if(valorBanco != null){
-			Locale brasil = new Locale("pt","BR");
-			DecimalFormat df = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (brasil));
-			df.setParseBigDecimal (true);  
-			String valorConvertido = df.format(valorBanco.getValorVenda());
-			
-			return "R$ " + valorConvertido;
-		}	
-		return null;
+
+	public BigDecimal pegarValor(Long id) {
+		return valores.getValorVenda(id);
 	}
-	
-	public void selecionarLivro(Livro l){
+
+	public String pegarValorConvertido(Long id) {
+		return valores.getValorVendaConvertido(id);
+
+	}
+
+	public void selecionarLivro(Livro l) {
 		this.livroSelecionado = l;
 		RequestContext.getCurrentInstance().execute("PF('modalLivro').show();");
+	}
+
+	public boolean disponivelCompra(Long id) {
+		Valores val = valores.buscar(id);
+		if (val != null)
+			if (val.getQuantidade() > 0)
+				if (val.getValorVenda() != null)
+					return true;
+
+		return false;
+
+	}
+
+	public String valorBotaoCompra(Long id) {
+		return disponivelCompra(id) ? "Comprar" : "Indisponível";
+
 	}
 
 }

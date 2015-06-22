@@ -47,7 +47,8 @@
 								<h:outputText value="#{livro.genero.nome}" />
 
 								<h:outputText value="Preço:" />
-								<h:outputText value="#{buscarLivrosBean.getValor(livro.id)}" />
+								<h:outputText
+									value="#{buscarLivrosBean.pegarValorConvertido(livro.id)}" />
 							</h:panelGrid>
 						</p:outputPanel>
 					</h:panelGrid>
@@ -81,10 +82,14 @@
 
 							<h:outputText value="Preço:" />
 							<h:outputText
-								value="#{buscarLivrosBean.getValor(buscarLivrosBean.livroSelecionado.id)}" />
-							<p:button outcome="/livros/comprarLivro" value="Comprar"
-								styleClass="btn btn-success">
-								<f:param name="livroSelecionado" value="#{buscarLivrosBean.livroSelecionado.id}"/>		
+								value="#{buscarLivrosBean.pegarValorConvertido(buscarLivrosBean.livroSelecionado.id)}" />
+							<p:button outcome="/livros/comprarLivro"
+								value="#{buscarLivrosBean.valorBotaoCompra(buscarLivrosBean.livroSelecionado.id)}"
+								disabled="#{!buscarLivrosBean.disponivelCompra(buscarLivrosBean.livroSelecionado.id)}">
+								<f:param name="livroSelecionado"
+									value="#{buscarLivrosBean.livroSelecionado.id}" />
+								<f:param name="preco"
+									value="#{buscarLivrosBean.pegarValor(buscarLivrosBean.livroSelecionado.id)}" />
 							</p:button>
 						</h:panelGrid>
 					</p:outputPanel>

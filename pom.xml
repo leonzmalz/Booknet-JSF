@@ -19,7 +19,12 @@
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
 		</dependency>
-
+		<!-- Biblioteca para uso de servlets -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
 		<!-- Mojarra (implementacao do JSF) -->
 		<dependency>
 			<groupId>org.glassfish</groupId>

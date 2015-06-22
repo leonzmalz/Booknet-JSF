@@ -13,11 +13,11 @@ public class Usuario {
 	@GeneratedValue
 	@Column(name="idUsuario")
 	private Long id;
-	@Column(nullable = false, length = 45)
+    @Column(nullable=false,length=45)	
 	private String user;
-	@Column(nullable = false, length = 60)
+    @Column(nullable=false,length=60)
 	private String senha;
-	@Column(nullable = false, length = 10)
+    @Column(nullable=false)
 	private String tipo;
 	
 	public Long getId() {
