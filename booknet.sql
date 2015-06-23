@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Jun 20, 2015 as 04:43 PM
+-- Tempo de Geração: Jun 23, 2015 as 02:44 PM
 -- Versão do Servidor: 5.5.8
 -- Versão do PHP: 5.3.5
 
@@ -127,6 +127,11 @@ CREATE TABLE IF NOT EXISTS `livros_valores` (
 -- Extraindo dados da tabela `livros_valores`
 --
 
+INSERT INTO `livros_valores` (`idLivroValores`, `quantidade`, `valorVenda`, `valorAluguel`, `taxaRenovacao`, `multa`) VALUES
+(0, 0, '0.00', '0.00', '0.00', '0.00'),
+(45, 5, '123.21', '3.42', '3.42', '11.23'),
+(47, 20, '44.44', '3.32', '3.32', '1.45'),
+(48, 4, '50.30', '10.08', '1.11', '3.32');
 
 -- --------------------------------------------------------
 
@@ -139,15 +144,26 @@ CREATE TABLE IF NOT EXISTS `negociacoes` (
   `idLivro` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `dataNegociacao` date NOT NULL,
+  `formaPagamento` varchar(20) DEFAULT NULL,
+  `qtdParcelas` int(11) DEFAULT NULL,
+  `valor` decimal(10,2) DEFAULT NULL,
+  `cartao` varchar(20) DEFAULT NULL,
+  `vencimento` date DEFAULT NULL,
+  `digitoCartao` int(3) DEFAULT NULL,
   PRIMARY KEY (`idNegociacao`),
   KEY `fk_Aluguel_Livro_idx` (`idLivro`),
   KEY `fk_Aluguel_Usuario1_idx` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `negociacoes`
 --
 
+INSERT INTO `negociacoes` (`idNegociacao`, `idLivro`, `idUsuario`, `dataNegociacao`, `formaPagamento`, `qtdParcelas`, `valor`, `cartao`, `vencimento`, `digitoCartao`) VALUES
+(1, 45, 1, '2015-06-23', 'CARTAO', 1, '123.21', '442424', '2010-12-01', 123),
+(2, 48, 1, '2015-06-23', 'BOLETO', 0, '50.30', NULL, '2015-06-23', 0),
+(3, 47, 1, '2015-06-23', 'BOLETO', 0, '44.44', NULL, NULL, 0),
+(4, 47, 1, '2015-06-23', 'CARTAO', 8, '5.56', '123123123122', '3131-12-01', 886);
 
 -- --------------------------------------------------------
 
@@ -263,7 +279,7 @@ ALTER TABLE `aluguel`
 --
 ALTER TABLE `livros`
   ADD CONSTRAINT `fk_Livro_Genero` FOREIGN KEY (`idGenero`) REFERENCES `generos` (`idGenero`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-  
+
 --
 -- Restrições para a tabela `negociacoes`
 --
