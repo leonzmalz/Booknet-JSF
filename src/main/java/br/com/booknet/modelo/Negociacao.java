@@ -1,6 +1,7 @@
 package br.com.booknet.modelo;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,6 +34,12 @@ public class Negociacao {
 	private int qtdParcelas;
 	@Column(nullable=true,precision = 10, scale = 2)
 	private BigDecimal valor;
+	@Column(nullable=true,length=20)
+	private String cartao;
+	@Column(nullable=true)
+	private Date vencimento;
+	@Column(nullable=true,length=3)
+	private int digitoCartao;
 	
 	
 	public Negociacao() {
@@ -83,6 +90,24 @@ public class Negociacao {
 	}
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+	public String getCartao() {
+		return cartao;
+	}
+	public void setCartao(String cartao) {
+		this.cartao = cartao;
+	}
+	public Date getVencimento() {
+		return vencimento;
+	}
+	public void setVencimento(Date vencimento ) {
+		this.vencimento = vencimento;
+	}
+	public int getDigitoCartao() {
+		return digitoCartao;
+	}
+	public void setDigitoCartao(int digitoCartao) {
+		this.digitoCartao = digitoCartao;
 	}
 	
 	

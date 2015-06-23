@@ -38,7 +38,7 @@
 
 					</div>
 					<div>
-						<h:panelGroup rendered="#{comprarLivroBean.exibirParcelas()}"
+						<h:panelGroup rendered="#{comprarLivroBean.exibirCartao()}"
 							layout="block">
 							<h:panelGrid columns="1">
 								<p:outputLabel for="selectParcelas" value="Parcelas: " />
@@ -60,6 +60,19 @@
 									<p:ajax listener="#{comprarLivroBean.atualizaValorParcela()}"
 										update="@form" />
 								</p:selectOneMenu>
+								<p:outputLabel for="txtCartao" value="Nº Cartão: " />
+								<p:inputText value="#{comprarLivroBean.negociacao.cartao}"
+									styleClass="form-control" id="txtCartao"
+									required="#{comprarLivroBean.cartao}" />
+								<p:outputLabel for="txtDigito" value="Dígito Verificador: " />
+								<p:inputText value="#{comprarLivroBean.negociacao.digitoCartao}"
+									styleClass="form-control" id="txtDigito" maxlength="3"
+									required="#{comprarLivroBean.cartao}" />
+								<p:outputLabel for="txtVencimento" value="Vencimento: "
+									required="#{comprarLivroBean.cartao}" />
+								<p:inputMask mask="99/9999"
+									value="#{comprarLivroBean.dataVencimento}"
+									styleClass="form-control" id="txtVencimento" size="3" />
 
 							</h:panelGrid>
 

@@ -6,6 +6,9 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -38,7 +41,8 @@ public class ComprarLivroBean implements Serializable {
 	private RepositorioDeUsuarios usuarios;
 	private String valorConvertido;
 	private BigDecimal valorOriginal;
-	private boolean usuarioOk = false;
+	private String dataVencimento;
+	private boolean isCartao;
 
 	public ComprarLivroBean() {
 		// TODO Auto-generated constructor stub
@@ -46,6 +50,7 @@ public class ComprarLivroBean implements Serializable {
 		this.negociacao = new Negociacao();
 		this.negociacoes = new RepositorioDeNegociacoes();
 		this.usuarios = new RepositorioDeUsuarios();
+		this.setCartao(false);
 	}
 
 	public Negociacao getNegociacao() {
@@ -64,6 +69,23 @@ public class ComprarLivroBean implements Serializable {
 		this.valorConvertido = valorConvertido;
 	}
 
+	public String getDataVencimento() {
+		return dataVencimento;
+	}
+
+	public void setDataVencimento(String dataVencimento) {
+		this.dataVencimento = dataVencimento;
+	}
+
+	public boolean isCartao() {
+		return isCartao;
+	}
+
+	public boolean setCartao(boolean isCartao) {
+		this.isCartao = isCartao;
+		return isCartao;
+	}
+
 	public void carregarLivro() {
 		this.negociacao.setLivro(livros.buscaPorId(this.negociacao.getLivro()
 				.getId()));
@@ -71,7 +93,7 @@ public class ComprarLivroBean implements Serializable {
 		this.valorOriginal = this.negociacao.getValor();
 
 	}
-	
+
 	// Pego e carrego o usuário
 	public void pegarCookie() {
 		Map<String, Object> cookies = FacesContext.getCurrentInstance()
@@ -81,16 +103,20 @@ public class ComprarLivroBean implements Serializable {
 		if (cookie != null) {
 			this.negociacao.setUsuario(usuarios.buscar(Long.parseLong(cookie
 					.getValue())));
-			System.out.println("Usuário logado - " + this.negociacao.getUsuario().getUser());
+			System.out.println("Usuário logado - "
+					+ this.negociacao.getUsuario().getUser());
 		} else {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Não existe Usuário logado, por favor faça login para concluir a compra", "ERRO"));
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							null,
+							new FacesMessage(
+									FacesMessage.SEVERITY_WARN,
+									"Não existe Usuário logado, por favor faça login para concluir a compra",
+									"ERRO"));
 		}
 
 	}
-
 
 	public void converterValor() {
 		if (this.negociacao.getValor() != null) {
@@ -106,21 +132,29 @@ public class ComprarLivroBean implements Serializable {
 	}
 
 	public void salvar() {
-		System.out.println(this.negociacao.getUsuario().getUser());
-		negociacoes.guardar(this.negociacao);
-		// Decremento uma unidade no estoque
-		RepositorioDeValores valores = new RepositorioDeValores();
-		Valores valor = valores.buscar(this.negociacao.getLivro().getId());
-		valor.setQuantidade(valor.getQuantidade() - 1);
-		valores.guardar(valor);
+		// Primeiro valido a data
+		if (this.negociacao.getFormaPagamento().equals("CARTAO"))
+			this.negociacao.setVencimento(this.validarData());
+		if (this.negociacao.getUsuario().getId() != null) {
+			negociacoes.guardar(this.negociacao);
+			// Decremento uma unidade no estoque
+			RepositorioDeValores valores = new RepositorioDeValores();
+			Valores valor = valores.buscar(this.negociacao.getLivro().getId());
+			valor.setQuantidade(valor.getQuantidade() - 1);
+			valores.guardar(valor);
 
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Compra efetuada"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Compra efetuada"));
+		} else
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Não existe usuário logado", "ERRO"));
 
 	}
 
-	public boolean exibirParcelas() {
-		return this.negociacao.getFormaPagamento().equals("CARTAO");
+	public boolean exibirCartao() {
+		return setCartao(this.negociacao.getFormaPagamento().equals("CARTAO"));
 	}
 
 	public void atualizaValorParcela() {
@@ -129,6 +163,24 @@ public class ComprarLivroBean implements Serializable {
 		System.out.println(novoValor);
 		this.negociacao.setValor(novoValor);
 		this.converterValor();
+	}
+
+	public Date validarData() {
+		if (!this.dataVencimento.equals("")) {
+			// Vencimento de cartão no formato mês e ano
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+			try {
+				return sdf.parse(this.dataVencimento);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Data de vencimento inválida", "ERRO"));
+			}
+		}
+		return null;
+
 	}
 
 }
